@@ -1,0 +1,57 @@
+Start:program identifier semicolon variable_explain compound_sentence dot
+
+variable_explain:var variable_definition | epsilon
+
+variable_definition:identifier_list colon type semicolon variable_definition | identifier_list colon type semicolon
+
+identifier_list:identifier comma identifier_list | identifier
+
+
+
+compound_sentence:begin sentence_list end 
+
+sentence_list:sentence semicolon sentence_list | sentence
+
+sentence:assign_sentence | if_sentence | while_sentence | repeat_sentence | compound_sentence
+
+assign_sentence:identifier assign cal_expression 
+
+if_sentence:if bool_expression then sentence | if bool_expression then sentence else sentence
+
+while_sentence:while bool_expression do sentence
+
+repeat_sentence:repeat sentence until bool_expression
+
+
+
+
+expression:cal_expression | bool_expression | char_expression
+
+cal_expression:cal_expression add item | cal_expression sub item | item
+
+item:item mul factor | item del factor | factor
+
+factor:cal_num | sub factor
+
+cal_num:integer | identifier | L_bracket cal_expression R_bracket
+
+bool_expression:bool_expression or bool_item | bool_item 
+
+bool_item:bool_item and bool_factor | bool_factor
+
+bool_factor:bool_num | not bool_factor
+
+bool_num:bool_const | identifier | L_bracket bool_expression R_bracket | identifier op identifier | cal_expression op cal_expression
+
+op:less | not_equal | less_or_equal | over_or_equal | over | equal
+
+char_expression:char_const | identifier
+
+
+
+
+type:integer │ bool │ char
+
+
+
+
